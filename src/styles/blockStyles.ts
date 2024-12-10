@@ -1,0 +1,43 @@
+export const blockBackgroundStyles = {
+  base: `
+    relative
+    backdrop-blur-xl 
+    bg-gradient-to-br
+    from-dark-800/60
+    via-dark-800/80
+    to-dark-800/60
+    border 
+    border-dark-700/30 
+    rounded-xl 
+    transition-all 
+    duration-500 
+    ease-out 
+    overflow-hidden
+    group
+    shadow-lg
+    shadow-dark-900/50
+    before:absolute
+    before:inset-0
+    before:bg-gradient-to-b
+    before:from-white/[0.03]
+    before:to-transparent
+    before:rounded-xl
+    after:absolute
+    after:inset-0
+    after:bg-gradient-to-t
+    after:from-primary-600/[0.02]
+    after:to-transparent
+    after:rounded-xl
+  `,
+  hover: `
+    hover:border-primary-600/30
+    hover:scale-105
+    hover:shadow-[0_0_30px_rgba(99,16,161,0.2)]
+    hover:bg-gradient-to-br
+    hover:from-dark-800/70
+    hover:via-dark-800/90
+    hover:to-dark-800/70
+    hover:before:from-white/[0.05]
+    hover:after:from-primary-600/[0.05]
+  `
+};
