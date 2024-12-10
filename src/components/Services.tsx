@@ -2,8 +2,28 @@ import { blockBackgroundStyles } from '../styles/blockStyles';
 import { AmbientLight } from './effects/AmbientLight';
 import { CornerOutlines } from './effects/CornerOutlines';
 import { services } from '../data/services';
+import { useEffect } from 'react';
 
 export function Services() {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-20');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '50px'
+    });
+
+    const elements = document.querySelectorAll('[data-animate="true"]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="services" className="relative py-4 px-6">
       <div className="relative max-w-7xl mx-auto">
@@ -28,7 +48,8 @@ export function Services() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className={`${blockBackgroundStyles.base} ${blockBackgroundStyles.hover} p-6`}
+              className={`${blockBackgroundStyles.base} ${blockBackgroundStyles.hover} p-6 
+                opacity-0 translate-y-20 transition-all duration-700 ease-out`}
               style={{
                 transitionDelay: `${index * 100}ms`
               }}
